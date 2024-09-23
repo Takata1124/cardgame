@@ -68,4 +68,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Sprite Not found");
         }
     }
+
+    private void setupBackgounrd() {
+        
+    }
 }

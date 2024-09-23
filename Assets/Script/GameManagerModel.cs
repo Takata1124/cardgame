@@ -5,8 +5,8 @@ using System;
 
 class GameManagerModel {
     private static GameManagerModel singleton;
-    private float initialX = -1100; 
-    private float initialY = 400; 
+    private float initialX = -900; 
+    private float initialY = 300; 
     public static GameManagerModel GetInstance() {
         if (singleton == null) {
             singleton = new GameManagerModel();
@@ -40,7 +40,7 @@ class GameManagerModel {
         }
         if (26 <= number) {
             x = 70 * (number - 26) + initialX;
-            y = initialY - 800;
+            y = initialY - 600;
         }
         return new float[] { x, y };;
     }
