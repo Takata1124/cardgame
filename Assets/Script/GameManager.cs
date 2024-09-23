@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,9 +19,12 @@ public class GameManager : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
-        makeCards(cardList);
+        try {
+            await makeCards(cardList);
+            await setupCardImage();
+        } catch {} finally {}
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void makeCards(List<int> list)
+    async Task makeCards(List<int> list)
     {
         int count = 0;
         foreach (int i in list) {
@@ -48,11 +52,16 @@ public class GameManager : MonoBehaviour
         prefab.transform.SetParent(canvas.transform, false);
     }
 
+    async Task setupCardImage() {
+        for (int i  = 1 ; i < 53 ; i++) {
+            didCardTapped(i.ToString());
+        }
+    }
+
     public void didCardTapped(string name) {
         string cardFileName = gameModel.getCardFileName(name);
         Sprite sprite = Resources.Load<Sprite>(cardFileName);
-        GameObject gameObj = GameObject.Find(name);
-        SpriteRenderer sprRender = gameObj.GetComponent<SpriteRenderer>();
+        SpriteRenderer sprRender = GameObject.Find(name).GetComponent<SpriteRenderer>();
         if (sprite) {
             sprRender.sprite = sprite;
         } else {

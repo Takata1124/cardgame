@@ -41,7 +41,7 @@ public class Trump : MonoBehaviour
 
     public void onClickAct() 
     {
-        // gameManager.didCardTapped(this.gameObject.name);
+        gameManager.didCardTapped(this.gameObject.name);
     }
 
     public void OnMouseDown()

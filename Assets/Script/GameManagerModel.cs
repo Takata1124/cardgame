@@ -35,32 +35,32 @@ class GameManagerModel {
         float x = 0;
         float y = 0;
         if (number < 26) {
-            x = 100 * number + initialX;
+            x = 70 * number + initialX;
             y = initialY;
         }
         if (26 <= number) {
-            x = 100 * (number - 26) + initialX;
+            x = 70 * (number - 26) + initialX;
             y = initialY - 800;
         }
         return new float[] { x, y };;
     }
 
     public string getCardFileName(string name) {
-        long number = Convert.ToInt64(name, 10);
+        long number = name.ConvertedInteger();
         string spriteName = "";
         if (number < 14) {
             spriteName = string.Format("Cards/Clubs/{0}_club", number);
         }
-        if (14 <= number && number < 28) {
+        if (14 <= number && number < 27) {
             number -= 13;
             spriteName = string.Format("Cards/Diamonds/{0}_diamond", number);
         }
-        if (28 <= number && number < 42) {
-            number -= 27;
+        if (27 <= number && number < 40) {
+            number -= 26;
             spriteName = string.Format("Cards/Hearts/{0}_heart", number);
         }
-        if (42 <= number && number < 56) {
-            number -= 41;
+        if (40 <= number) {
+            number -= 39;
             spriteName = string.Format("Cards/Spades/{0}_spade", number);
         }
         return spriteName;
